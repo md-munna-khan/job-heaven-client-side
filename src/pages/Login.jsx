@@ -6,9 +6,10 @@ import { TbFidgetSpinner } from 'react-icons/tb'
 
 import useAuth from '../hooks/useAuth'
 import LoadingSpinner from '../assets/shared/LoadingSpinner'
+import { saveUser } from '../api/utils'
 
 const Login = () => {
-  const { signIn, signInWithGoogle, loading, user } = useAuth()
+  const {role, signIn, signInWithGoogle, loading, user } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location?.state?.from?.pathname || '/'
@@ -37,7 +38,14 @@ const Login = () => {
   const handleGoogleSignIn = async () => {
     try {
       //User Registration using google
-      await signInWithGoogle()
+     const res= await signInWithGoogle()
+     if(res?.user){
+      const defaultCoins = role === 'Worker' ? 10 : 50;
+      const info = {name:res.user.displayName,email:res.user?.email,role,imageUrl:res.user?.photoURL,defaultCoins}
+       await saveUser(info)
+    }
+      // save user info in db if the user is new
+   
       navigate(from, { replace: true })
       toast.success('Login Successful')
     } catch (err) {
@@ -46,7 +54,7 @@ const Login = () => {
     }
   }
   return (
-    <div className='flex justify-center items-center min-h-screen bg-white'>
+    <div className='flex mt-32 justify-center items-center min-h-screen bg-white'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Log In</h1>

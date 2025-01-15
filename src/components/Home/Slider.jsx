@@ -37,7 +37,7 @@ const Slider = () => {
       >
        
        <SwiperSlide>
-        <div className="relative mt-20">
+        <div className="relative mt-32">
           <img src={slider1} alt="University 1" className="w-full h-64 md:h-96 lg:h-[800px] object-cover" style={{ objectFit: 'cover' }} />
           <div className="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-50 p-2">
             <div className="text-left text-white">
