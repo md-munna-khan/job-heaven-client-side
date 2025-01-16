@@ -9,6 +9,14 @@ import WorkerHome from "../layouts/Dashboard/Worker/WorkerHome";
 import TaskList from "../layouts/Dashboard/Worker/TaskList";
 import MySubmissions from "../layouts/Dashboard/Worker/MySubmissions";
 import Withdrawals from "../layouts/Dashboard/Worker/Withdrawals";
+import BuyerHome from "../layouts/Dashboard/buyer/BuyerHome";
+import AddNewTasks from "../layouts/Dashboard/buyer/AddNewTasks";
+import MyTasks from "../layouts/Dashboard/buyer/MyTasks";
+import PurchaseCoin from "../layouts/Dashboard/buyer/PurchaseCoin";
+import PaymentHistory from "../layouts/Dashboard/buyer/PaymentHistory";
+import AdminHome from "../layouts/Dashboard/admin/AdminHome";
+import ManageUsers from "../layouts/Dashboard/admin/ManageUsers";
+import ManageTask from "../layouts/Dashboard/admin/ManageTask";
 
 
 
@@ -54,6 +62,38 @@ const router = createBrowserRouter ([
       element:<Withdrawals></Withdrawals>
     },
     // buyer route
+    {
+      path:'buyer-home',
+      element:<BuyerHome></BuyerHome>
+    },
+    {
+      path:'add-new-tasks',
+      element:<AddNewTasks></AddNewTasks>
+    },
+    {
+      path:'my-tasks',
+      element:<MyTasks></MyTasks>
+    },
+    {
+      path:'purchase-coin',
+      element:<PurchaseCoin></PurchaseCoin>
+    },
+    {
+      path:'payment-history',
+      element:<PaymentHistory></PaymentHistory>
+    },
+    {
+      path:'admin-home',
+      element:<AdminHome></AdminHome>
+    },
+    {
+      path:'manage-users',
+      element:<ManageUsers></ManageUsers>
+    },
+    {
+      path:'manage-task',
+      element:<ManageTask></ManageTask>
+    },
   ]
 }
 ])
