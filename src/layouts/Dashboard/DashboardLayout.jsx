@@ -28,26 +28,30 @@ import { Outlet } from "react-router-dom";
 
 import Footer from "../../assets/shared/Footer";
 import Sidebar from "./sidebar/Sidebar";
+import DashNavbar from "./DashNav";
 
 const DashboardLayout = () => {
   return (
-    <div className=" container mx-auto  flex h-screen">
+    <div className=" container mx-auto flex h-screen  ">
       {/* Sidebar Section */}
-      <div className="w-1/4 bg-gray-200 p-4">
+      <DashNavbar></DashNavbar>
+   
+     <div className="w-1/4  h-full mt-20 bg-gray-200 p-4  ">
         <Sidebar />
       </div>
 
       {/* Main Content Section */}
-      <div className="w-3/4 flex flex-col">
+      <div className="w-3/4 flex flex-col ">
         {/* Main Content Area */}
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 overflow-y-auto  mt-20 p-4">
           <Outlet />
         </div>
 
         {/* Footer */}
         <Footer />
       </div>
-    </div>
+     </div>
+   
   );
 };
 

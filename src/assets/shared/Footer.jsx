@@ -22,7 +22,7 @@ const Footer = () => {
             alt="Logo"
             className="w-10 h-10 rounded-full"
           />
-          <h2 className="text-xl font-bold">Abroad University</h2>
+          <h2 className="text-xl font-bold">JOb Heaven</h2>
           <p className="text-sm mt-2">
            Build Your Son Futures With Us
           </p>
