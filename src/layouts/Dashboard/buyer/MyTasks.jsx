@@ -43,7 +43,8 @@ if (isLoading) {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axiosSecure.delete(`/Tasks/${taskId}?email=${user?.email}`);
+          await axiosSecure.delete(`/Tasks/${taskId}`);
+          // await axiosSecure.delete(`/Tasks/${taskId}?email=${user?.email}`);
      
           Swal.fire("Deleted!", "Your task has been deleted.", "success");
         } catch (err) {
