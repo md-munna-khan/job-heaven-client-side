@@ -13,23 +13,23 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
-  const [coin, setCoin] = useState(null); // State to hold the coin value
-  const { user, logOut } = useAuth();
-  console.log(user);
+  // State to hold the coin value
+  const {coin, getUserRole, user, logOut } = useAuth();
+ 
 
-  const getUserRole = async (email) => {
-    try {
-      // Make GET request to your API endpoint to fetch user data including coin
-      const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/users/role/${email}`);
-console.log(data)
-      // Log the response data and set the coin
-      console.log('User Data:', data.defaultCoins
-      );
-      setCoin(data.defaultCoins); // Set the coin from response data
-    } catch (error) {
-      console.error('Error fetching user role:', error);
-    }
-  };
+//   const getUserRole = async (email) => {
+//     try {
+//       // Make GET request to your API endpoint to fetch user data including coin
+//       const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/users/role/${email}`);
+// console.log(data)
+//       // Log the response data and set the coin
+//       console.log('User Data:', data.defaultCoins
+//       );
+//       setCoin(data.defaultCoins); // Set the coin from response data
+//     } catch (error) {
+//       console.error('Error fetching user role:', error);
+//     }
+//   };
 
   const handleToggleUser = () => {
     setIsHidden(!isHidden);

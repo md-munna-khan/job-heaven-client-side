@@ -12,6 +12,7 @@ import {
 } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
 import axios from 'axios'
+import { useQuery } from '@tanstack/react-query'
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -24,6 +25,30 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [role,setRole]=useState('Worker')
+  const [coin, setCoin] = useState(null);
+
+  const [coinLoading, setCoinLoading] = useState(false);
+
+ 
+     
+
+      
+      
+  const getUserRole = async (email) => {
+    setCoinLoading(true); // Set loading to true
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users/role/${email}`
+      );
+      console.log('User Data:', data);
+      setCoin(data.defaultCoins);
+    } catch (error) {
+      console.error(`Error fetching user role for ${email}:`, error);
+    } finally {
+      setCoinLoading(false); // Set loading to false
+    }
+  };
+  
   const createUser = (email, password) => {
     setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
@@ -57,6 +82,10 @@ const AuthProvider = ({ children }) => {
       console.log('CurrentUser-->', currentUser?.email)
       if (currentUser?.email) {
         setUser(currentUser)
+        //
+        if (currentUser?.email) {
+          await getUserRole(currentUser.email); // Fetch user role on login
+        }
 
         // Get JWT token
         await axios.post(
@@ -103,7 +132,11 @@ const AuthProvider = ({ children }) => {
 //     return unSubscribe()
 // }
 // },[axios])
-
+useEffect(() => {
+  if (coin !== null) {
+    console.log('Updated coin value:', coin);
+  }
+}, [coin]);
   const authInfo = {
     user,
     setUser,
@@ -115,7 +148,12 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUserProfile,
     role,
-    setRole
+    setRole,
+    coin,
+    setCoin,
+    getUserRole,
+    coinLoading
+   
   }
 
   return (

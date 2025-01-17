@@ -17,6 +17,7 @@ import PaymentHistory from "../layouts/Dashboard/buyer/PaymentHistory";
 import AdminHome from "../layouts/Dashboard/admin/AdminHome";
 import ManageUsers from "../layouts/Dashboard/admin/ManageUsers";
 import ManageTask from "../layouts/Dashboard/admin/ManageTask";
+import CheckOutForm from "../layouts/Dashboard/buyer/CheckOutForm";
 
 
 
@@ -37,7 +38,11 @@ const router = createBrowserRouter ([
     {
       path:  '/signup',
       element:<SignUp></SignUp>
-    }
+    },
+    //  {
+    //   path:'/check-out-form',
+    //   element:<CheckOutForm></CheckOutForm>
+    // }
    ]
 },
 {
@@ -70,6 +75,10 @@ const router = createBrowserRouter ([
       path:'add-new-tasks',
       element:<AddNewTasks></AddNewTasks>
     },
+    // {
+    //   path:'check-out-form',
+    //   element:<CheckOutForm></CheckOutForm>
+    // },
     {
       path:'my-tasks',
       element:<MyTasks></MyTasks>

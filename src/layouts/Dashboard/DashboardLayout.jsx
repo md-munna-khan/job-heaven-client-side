@@ -26,7 +26,7 @@
 
 import { Outlet } from "react-router-dom";
 
-import Footer from "../../assets/shared/Footer";
+// import Footer from "../../assets/shared/Footer";
 import Sidebar from "./sidebar/Sidebar";
 import DashNavbar from "./DashNav";
 
@@ -48,7 +48,7 @@ const DashboardLayout = () => {
         </div>
 
         {/* Footer */}
-        <Footer />
+        {/* <Footer /> */}
       </div>
      </div>
    
