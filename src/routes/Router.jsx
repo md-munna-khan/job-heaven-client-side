@@ -17,7 +17,8 @@ import PaymentHistory from "../layouts/Dashboard/buyer/PaymentHistory";
 import AdminHome from "../layouts/Dashboard/admin/AdminHome";
 import ManageUsers from "../layouts/Dashboard/admin/ManageUsers";
 import ManageTask from "../layouts/Dashboard/admin/ManageTask";
-import CheckOutForm from "../layouts/Dashboard/buyer/CheckOutForm";
+import TaskDetails from "../layouts/Dashboard/Worker/TaskDetails";
+
 
 
 
@@ -65,6 +66,10 @@ const router = createBrowserRouter ([
     {
       path:'withdrawals',
       element:<Withdrawals></Withdrawals>
+    },
+    {
+      path:'task-details/:id',
+      element:<TaskDetails></TaskDetails>
     },
     // buyer route
     {

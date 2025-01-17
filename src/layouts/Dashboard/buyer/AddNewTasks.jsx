@@ -1,6 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -8,7 +8,7 @@ import { imageUpload } from "../../../api/utils";
 
 const AddNewTask = () => {
   const axiosSecure = useAxiosSecure();
-  const { getUserRole, coin, setCoin, user } = useAuth();
+  const { coin, setCoin, user } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
