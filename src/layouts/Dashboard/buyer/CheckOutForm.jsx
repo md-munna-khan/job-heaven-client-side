@@ -1,7 +1,4 @@
 
-
-    
-  
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -10,6 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
 
 const CheckOutForm = ({ amount }) => {
+
     const { user, refetch } = useAuth();
     const navigate = useNavigate();
 
@@ -49,23 +47,33 @@ const CheckOutForm = ({ amount }) => {
             if (error) {
                 console.error("Payment Error:", error);
                 toast.error("Payment Failed. Please try again.");
-            } else if (paymentIntent && paymentIntent.status === "succeeded") {
-                toast.success("Payment Successful!");
-                try {
-                    const response = await axios.post(`${import.meta.env.VITE_API_URL}/payment-success/${user.email}`, {
-                        paymentId: paymentIntent.id,
-                        amount: paymentIntent.amount,
-                    });
-                    refetch();
-                    navigate('/dashboard/paymentHistory');
-                } catch (err) {
-                    toast.error("Payment recorded successfully, but failed to update backend.");
-                }
-            }
+            } 
+    
+        
+
+    else if (paymentIntent && paymentIntent.status === "succeeded") {
+        
+        toast.success("Payment Successful!");
+       
+    
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/payment-success/${user.email}`, {
+                paymentId: paymentIntent.id,
+                amount: paymentIntent.amount,
+            });
+            refetch();
+            navigate('/dashboard/paymentHistory');
         } catch (err) {
-            console.error("Error during payment:", err);
-            toast.error("Something went wrong. Please try again.");
-        } finally {
+            toast.error("Payment recorded successfully, but failed to update backend.");
+
+        }
+    }
+} catch (err) {
+    console.error("Error during payment:", err);
+    toast.error("Something went wrong. Please try again.");
+} 
+    
+        finally {
             setIsLoading(false); // Stop loading
         }
     };
@@ -97,3 +105,4 @@ const CheckOutForm = ({ amount }) => {
 };
 
 export default CheckOutForm;
+ 

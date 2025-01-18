@@ -82,7 +82,7 @@ const router = createBrowserRouter ([
       element:<AddNewTasks></AddNewTasks>
     },
     {
-      path:'payment-card',
+      path:'payment-card/:amount',
       element:<PaymentCards></PaymentCards>
     },
     {

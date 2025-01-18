@@ -14,9 +14,9 @@ const PurchaseCoin = () => {
 
   const handlePaymentRedirect = (amount, coins) => {
     // Redirect to payment page with the specific amount and coins to be paid
-    navigate('/dashboard/payment-card', { state: { amount, coins } });
+    navigate(`/dashboard/payment-card/${amount*100}`);
   };
-
+//   , { state: { amount, coins } }
   return (
     <div className="grid grid-cols-1 mt-20 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {coinPackages.map((pkg, index) => (
