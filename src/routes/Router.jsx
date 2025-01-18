@@ -18,6 +18,7 @@ import AdminHome from "../layouts/Dashboard/admin/AdminHome";
 import ManageUsers from "../layouts/Dashboard/admin/ManageUsers";
 import ManageTask from "../layouts/Dashboard/admin/ManageTask";
 import TaskDetails from "../layouts/Dashboard/Worker/TaskDetails";
+import PaymentCards from "../layouts/Dashboard/buyer/PaymentCards";
 
 
 
@@ -80,10 +81,10 @@ const router = createBrowserRouter ([
       path:'add-new-tasks',
       element:<AddNewTasks></AddNewTasks>
     },
-    // {
-    //   path:'check-out-form',
-    //   element:<CheckOutForm></CheckOutForm>
-    // },
+    {
+      path:'payment-card',
+      element:<PaymentCards></PaymentCards>
+    },
     {
       path:'my-tasks',
       element:<MyTasks></MyTasks>
