@@ -62,7 +62,7 @@ const CheckOutForm = ({ amount }) => {
                 amount: paymentIntent.amount,
             });
             refetch();
-            navigate('/dashboard/paymentHistory');
+            navigate('/dashboard/payment-history');
         } catch (err) {
             toast.error("Payment recorded successfully, but failed to update backend.");
 

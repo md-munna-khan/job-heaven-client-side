@@ -29,10 +29,6 @@ const AuthProvider = ({ children }) => {
 
   const [coinLoading, setCoinLoading] = useState(false);
 
- 
-     
-
-      
       
   const getUserRole = async (email) => {
     setCoinLoading(true); // Set loading to true
