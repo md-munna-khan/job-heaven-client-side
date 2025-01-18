@@ -9,7 +9,7 @@ import WorkerHome from "../layouts/Dashboard/Worker/WorkerHome";
 import TaskList from "../layouts/Dashboard/Worker/TaskList";
 import MySubmissions from "../layouts/Dashboard/Worker/MySubmissions";
 import Withdrawals from "../layouts/Dashboard/Worker/Withdrawals";
-import BuyerHome from "../layouts/Dashboard/buyer/BuyerHome";
+
 import AddNewTasks from "../layouts/Dashboard/buyer/AddNewTasks";
 import MyTasks from "../layouts/Dashboard/buyer/MyTasks";
 import PurchaseCoin from "../layouts/Dashboard/buyer/PurchaseCoin";
@@ -19,6 +19,7 @@ import ManageUsers from "../layouts/Dashboard/admin/ManageUsers";
 import ManageTask from "../layouts/Dashboard/admin/ManageTask";
 import TaskDetails from "../layouts/Dashboard/Worker/TaskDetails";
 import PaymentCards from "../layouts/Dashboard/buyer/PaymentCards";
+import TaskToReview from "../layouts/Dashboard/buyer/TaskToReview";
 
 
 
@@ -41,10 +42,7 @@ const router = createBrowserRouter ([
       path:  '/signup',
       element:<SignUp></SignUp>
     },
-    //  {
-    //   path:'/check-out-form',
-    //   element:<CheckOutForm></CheckOutForm>
-    // }
+
    ]
 },
 {
@@ -74,8 +72,8 @@ const router = createBrowserRouter ([
     },
     // buyer route
     {
-      path:'buyer-home',
-      element:<BuyerHome></BuyerHome>
+      path:"task-to-review",
+      element:<TaskToReview></TaskToReview>
     },
     {
       path:'add-new-tasks',

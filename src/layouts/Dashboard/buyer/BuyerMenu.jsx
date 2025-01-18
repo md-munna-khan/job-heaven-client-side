@@ -6,8 +6,8 @@ import { FaHistory } from "react-icons/fa";
 const BuyerMenu = () => {
     return (
         <div className=" flex flex-col  ">
-     <Link to="buyer-home" className="text-blue-600  inline-flex items-center hover:underline">
-       <FaHome></FaHome> buyer Home
+     <Link to="task-to-review" className="text-blue-600  inline-flex items-center hover:underline">
+       <FaHome></FaHome>Task To Review
       </Link>
       <Link to="add-new-tasks" className="text-blue-600 inline-flex items-center hover:underline">
        <FaTasks></FaTasks> Add New Tasks
