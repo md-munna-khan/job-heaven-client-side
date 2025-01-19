@@ -1,13 +1,16 @@
+
+
+
+import React from "react"; // Add this import
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
-
 import { Toaster, toast } from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MySubmissions = () => {
   const { user } = useAuth();
- 
-const axiosSecure=useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
+
   const { data: submissions = [], isLoading, isError } = useQuery({
     queryKey: ["submissions", user?.email],
     queryFn: async () => {
@@ -21,6 +24,24 @@ const axiosSecure=useAxiosSecure()
       console.error("Error fetching submissions:", error);
     },
   });
+
+  // Pagination states
+  const itemsPerPage = 2;
+  const [currentPage, setCurrentPage] = React.useState(0);
+
+  // Calculate the number of pages
+  const totalPages = Math.ceil(submissions.length / itemsPerPage);
+
+  // Slice the submissions for the current page
+  const paginatedSubmissions = submissions.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
+
+  // Handle page change
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   if (isLoading) {
     return (
@@ -42,6 +63,8 @@ const axiosSecure=useAxiosSecure()
     <div className="container mx-auto p-6">
       <Toaster position="top-center" reverseOrder={false} />
       <h1 className="text-4xl text-center mb-6 font-bold text-gray-800">My Submissions</h1>
+
+      {/* Submissions Table */}
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr>
@@ -53,7 +76,7 @@ const axiosSecure=useAxiosSecure()
           </tr>
         </thead>
         <tbody>
-          {submissions.map((submission) => (
+          {paginatedSubmissions.map((submission) => (
             <tr key={submission._id} className="hover:bg-gray-100">
               <td className="px-4 py-2 border border-gray-300">{submission.task_title}</td>
               <td className="px-4 py-2 border border-gray-300">
@@ -80,6 +103,21 @@ const axiosSecure=useAxiosSecure()
           ))}
         </tbody>
       </table>
+
+      {/* Pagination */}
+      <div className="flex justify-center mt-4 space-x-2">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index)}
+            className={`px-3 py-1 rounded ${
+              index === currentPage ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
