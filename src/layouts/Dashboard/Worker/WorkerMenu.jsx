@@ -5,8 +5,8 @@ import { BiMoneyWithdraw } from "react-icons/bi";
 const WorkerMenu = () => {
     return (
         <div className=" flex flex-col ">
-             <Link to="worker-home" className="text-blue-600 inline-flex items-center hover:underline">
-       <FaHome></FaHome> Worker Home
+             <Link to="approved-submissions" className="text-blue-600 inline-flex items-center hover:underline">
+       <FaHome></FaHome> Approved 
       </Link>
       <Link to="task-list" className="text-blue-600 inline-flex items-center hover:underline">
        <FaTasks></FaTasks> Task List

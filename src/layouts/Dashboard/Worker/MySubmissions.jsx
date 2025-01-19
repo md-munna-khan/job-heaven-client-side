@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
-import axios from "axios";
+
 import { Toaster, toast } from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 

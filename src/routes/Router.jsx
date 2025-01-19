@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import ErrorPage from "../pages/ErrorPage";
 import DashboardLayout from "../layouts/Dashboard/DashboardLayout";
-import WorkerHome from "../layouts/Dashboard/Worker/WorkerHome";
+
 import TaskList from "../layouts/Dashboard/Worker/TaskList";
 import MySubmissions from "../layouts/Dashboard/Worker/MySubmissions";
 import Withdrawals from "../layouts/Dashboard/Worker/Withdrawals";
@@ -20,6 +20,7 @@ import ManageTask from "../layouts/Dashboard/admin/ManageTask";
 import TaskDetails from "../layouts/Dashboard/Worker/TaskDetails";
 import PaymentCards from "../layouts/Dashboard/buyer/PaymentCards";
 import TaskToReview from "../layouts/Dashboard/buyer/TaskToReview";
+import ApprovedSubmissions from "../layouts/Dashboard/Worker/ApprovedSubmissions";
 
 
 
@@ -51,8 +52,8 @@ const router = createBrowserRouter ([
   children:[
     // worker route
     {
-      path:'worker-home',
-      element:<WorkerHome></WorkerHome>
+      path:'approved-submissions',
+      element:<ApprovedSubmissions></ApprovedSubmissions>
     },
     {
       path:'task-list',
