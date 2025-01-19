@@ -109,7 +109,7 @@ if (isLoading) {
                   <td className="border p-2">{task.required_workers}</td>
                   <td className="border p-2">${task.payable_amount}</td>
                   <td className="border p-2">
-                    ${task.requiredWorkers * task.payableAmount}
+                    ${task.required_workers * task.payable_amount}
                   </td>
                   <td className="border p-2">
                     <button
