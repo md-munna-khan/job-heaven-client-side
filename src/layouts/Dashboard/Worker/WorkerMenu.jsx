@@ -5,6 +5,10 @@ import { BiMoneyWithdraw } from "react-icons/bi";
 const WorkerMenu = () => {
     return (
         <div className=" flex flex-col ">
+            
+             <Link to="/dashboard/worker" className="text-blue-600 inline-flex items-center hover:underline">
+       <FaHome></FaHome> Home 
+      </Link>
              <Link to="approved-submissions" className="text-blue-600 inline-flex items-center hover:underline">
        <FaHome></FaHome> Approved 
       </Link>

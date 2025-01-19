@@ -21,6 +21,8 @@ import TaskDetails from "../layouts/Dashboard/Worker/TaskDetails";
 import PaymentCards from "../layouts/Dashboard/buyer/PaymentCards";
 import TaskToReview from "../layouts/Dashboard/buyer/TaskToReview";
 import ApprovedSubmissions from "../layouts/Dashboard/Worker/ApprovedSubmissions";
+import WorkerHome from "../layouts/Dashboard/Worker/WorkerHome";
+import BuyerHome from "../layouts/Dashboard/buyer/BuyerHome";
 
 
 
@@ -52,6 +54,10 @@ const router = createBrowserRouter ([
   children:[
     // worker route
     {
+      path:'/dashboard/worker',
+      element:<WorkerHome></WorkerHome>
+    },
+    {
       path:'approved-submissions',
       element:<ApprovedSubmissions></ApprovedSubmissions>
     },
@@ -72,6 +78,10 @@ const router = createBrowserRouter ([
       element:<TaskDetails></TaskDetails>
     },
     // buyer route
+    {
+      path:"/dashboard/buyer",
+      element:<BuyerHome></BuyerHome>
+    },
     {
       path:"task-to-review",
       element:<TaskToReview></TaskToReview>
