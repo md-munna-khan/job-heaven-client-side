@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { ClipLoader } from 'react-spinners'; // You can use any loading spinner you like
+import AdminWithdrawals from './AdminWithdrawals';
 
 const AdminHome = () => {
   const [stats, setStats] = useState(null);
@@ -73,6 +74,7 @@ const AdminHome = () => {
           <p className="text-2xl font-bold text-red-500">${totalPayments.toFixed(2)}</p>
         </div>
       </div>
+      <AdminWithdrawals></AdminWithdrawals>
     </div>
   );
 };
