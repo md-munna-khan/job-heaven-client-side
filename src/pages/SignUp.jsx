@@ -10,7 +10,7 @@ import { imageUpload, saveUser } from '../api/utils';
 
 
 const SignUp = () => {
-  const { role,setRole, createUser, updateUserProfile, signInWithGoogle, loading } = useAuth();
+  const { setUserInfo,userInfo, role,setRole, createUser, updateUserProfile, signInWithGoogle, loading } = useAuth();
   const navigate = useNavigate();
 
   // Form submit handler
@@ -41,6 +41,7 @@ const SignUp = () => {
       console.log(`User role: ${role}, Coins awarded: ${defaultCoins}`);
       const info = {name,email,role,imageUrl,defaultCoins}
       await saveUser(info)
+      setUserInfo(info)
       // Navigate to home and display success toast
       navigate('/');
       toast.success('Signup Successful');
@@ -59,6 +60,7 @@ console.log(role)
       const defaultCoins = role === 'Worker' ? 10 : 50;
       const info = {name:res.user.displayName,email:res.user?.email,role,imageUrl:res.user?.photoURL,defaultCoins}
        await saveUser(info)
+       setUserInfo(info)
     }
       navigate('/');
       toast.success('Signup Successful');

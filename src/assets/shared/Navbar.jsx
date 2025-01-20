@@ -8,14 +8,14 @@ import { FaBars } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
   // State to hold the coin value
-  const {coin, getUserRole, user, logOut } = useAuth();
+  const {coin,userInfo, getUserRole, user, logOut } = useAuth();
  
 
 //   const getUserRole = async (email) => {
@@ -98,8 +98,22 @@ const Navbar = () => {
               {user && (
                 <>
                   <NavLink to="/dashboard" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Dashboard</NavLink>
-                  <NavLink to="/" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Available Coin: {coin || 0}</NavLink>
+                  <NavLink to="/" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Available Coin: {userInfo.defaultCoins || 0}</NavLink>
                   <NavLink to="/profile" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>User Profile</NavLink>
+
+                  {/* <NavLink
+                    to="/profile"
+                    className="px-4 py-2"
+                    onClick={handleLinkClick}
+                  >
+                    <div className="flex p-2 items-center space-x-2">
+                      <img
+                        src={user.photoURL || "/default-avatar.png"}
+                        alt="User Profile"
+                        className="w-8 h-8 rounded-full border"
+                      /> Profile
+                    </div>
+                  </NavLink> */}
                   <NavLink
                     to="#"
                     onClick={() => window.open("https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-md-munna-khan", "_blank")}
@@ -140,9 +154,23 @@ const Navbar = () => {
               {user && (
                 <>
                   <NavLink to="/dashboard" className="px-4 py-2" onClick={handleLinkClick}>Dashboard</NavLink>
-                  <NavLink to="/" className="px-4 py-2" onClick={handleLinkClick}>Available Coin: {coin || 0}</NavLink>
-                  <NavLink to="/join" className="px-4 py-2" onClick={handleLinkClick}>User Profile</NavLink>
+                  <NavLink to="/" className="px-4 py-2" onClick={handleLinkClick}>Available Coin: {userInfo.defaultCoins || 0}</NavLink>
+                  <NavLink  to="/join" className="px-4 py-2"  onClick={handleLinkClick}> User Profile </NavLink>
+                  {/* <NavLink
+                    to="/profile"
+                    className="px-4 py-2"
+                    onClick={handleLinkClick}
+                  >
+                    <div className="flex p-2 items-center space-x-2">
+                      <img
+                        src={user.photoURL || "/default-avatar.png"}
+                        alt="User Profile"
+                        className="w-8 h-8 rounded-full border"
+                      /> Profile
+                    </div>
+                  </NavLink> */}
                 </>
+                 
               )}
             </div>
           </div>
@@ -153,3 +181,8 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+
+

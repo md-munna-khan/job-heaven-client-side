@@ -9,7 +9,7 @@ import LoadingSpinner from '../assets/shared/LoadingSpinner'
 import { saveUser } from '../api/utils'
 
 const Login = () => {
-  const {role, signIn, signInWithGoogle, loading, user } = useAuth()
+  const {role,setUserInfo, signIn, signInWithGoogle, loading, user } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location?.state?.from?.pathname || '/'
@@ -43,6 +43,7 @@ const Login = () => {
       const defaultCoins = role === 'Worker' ? 10 : 50;
       const info = {name:res.user.displayName,email:res.user?.email,role,imageUrl:res.user?.photoURL,defaultCoins}
        await saveUser(info)
+       setUserInfo(info)
     }
       // save user info in db if the user is new
    

@@ -13,15 +13,17 @@ import { Toaster } from 'react-hot-toast'
 const queryClient = new QueryClient()
 createRoot(document.getElementById('root')).render(
   <StrictMode>
- <AuthProvider>
+
  <HelmetProvider>
   <QueryClientProvider  client={queryClient}>
+  <AuthProvider>
   <RouterProvider router={router} />
+  </AuthProvider>
   </QueryClientProvider>
   
   
    <Toaster position='top-right' reverseOrder={false} />
    </HelmetProvider>
- </AuthProvider>
+ 
   </StrictMode>,
 )
