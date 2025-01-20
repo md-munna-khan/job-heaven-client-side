@@ -77,33 +77,29 @@ const AddNewTask = () => {
       };
 
       // Submit to the backend
-      const data  = await axiosSecure.post("/addTasks", formData);
-      if (data){
-        toast.success('task added successfully')
-      }
-      // const {data } = await axiosSecure.post("/addTasks", formData);
+      const {data } = await axiosSecure.post("/addTasks", formData);
       // if (data){
       //   toast.success('task added successfully')
       // }
 
-      // if (data?.acknowledged) {
-      //   // Deduct coins and update balance
-      //   const updatedCoins = coin - totalPayableAmount;
-      //   const coinResponse = await axiosSecure.put(`/users/coins/${user.email}`, {
-      //     coinAmount: updatedCoins,
-      //   });
+      if (data?.acknowledged) {
+        // Deduct coins and update balance
+        const updatedCoins = coin - totalPayableAmount;
+        const coinResponse = await axiosSecure.put(`/users/coins/${user.email}`, {
+          coinAmount: updatedCoins,
+        });
 
-      //   if (coinResponse.data?.message === "Coin balance updated successfully") {
-      //     setCoin(updatedCoins);
-      //     toast.success("Task added and balance updated successfully!");
+        if (coinResponse.data?.message === "Coin balance updated successfully") {
+          setCoin(updatedCoins);
+          toast.success("Task added and balance updated successfully!");
         
-      //     form.reset();
-      //   } else {
-      //     toast.error("Task added, but failed to update coin balance.");
-      //   }
-      // } else {
-      //   toast.error("Failed to add task.");
-      // }
+          form.reset();
+        } else {
+          toast.error("Task added, but failed to update coin balance.");
+        }
+      } else {
+        toast.error("Failed to add task.");
+      }
       
     } catch (error) {
       toast.error("An error occurred while adding the task.");
