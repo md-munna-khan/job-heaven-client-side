@@ -1,36 +1,35 @@
 
 
 
-// import { Outlet } from 'react-router-dom'
-// import Sidebar from './sidebar/Sidebar'
-
-
-// const DashboardLayout = () => {
-//   return (
-//     <div className='relative min-h-screen md:flex bg-white'>
-//       {/* Left Side: Sidebar Component */}
-//       <Sidebar />
-//       {/* Right Side: Dashboard Dynamic Content */}
-//       <div className='flex-1  md:ml-64'>
-//         <div className='p-5'>
-//           {/* Outlet for dynamic contents */}
-//           <Outlet />
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default DashboardLayout
-
-
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 // import Footer from "../../assets/shared/Footer";
 import Sidebar from "./sidebar/Sidebar";
 import DashNavbar from "./DashNav";
+import useRole from "../../hooks/useRole";
+import { useEffect } from "react";
 
 const DashboardLayout = () => {
+
+  const [role, isLoading] = useRole()
+
+
+const navigate = useNavigate()
+
+useEffect(()=>{
+  if(role === "Worker"){
+    navigate('/dashboard/worker')
+  }
+  if(role === "Buyer"){
+    navigate('/dashboard/buyer')
+  }
+  if(role === "Admin"){
+    navigate('/dashboard/admin-home')
+  }
+},[role])
+
+
+
   return (
     <div className=" container mx-auto flex h-screen  ">
       {/* Sidebar Section */}

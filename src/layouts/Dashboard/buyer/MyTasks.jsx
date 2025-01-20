@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";  // Import SweetAlert2
@@ -20,7 +20,7 @@ const MyTasks = () => {
   const { data:tasks=[],isLoading,refetch } = useQuery({
     queryKey:['task',user],
     queryFn: async () => {
-        const { data } = await axiosSecure(`/Tasks?email=${user?.email}`)
+        const { data } = await axiosSecure.get(`/Tasks/my-task?email=${user?.email}`)
         console.log(data)
         // setTasks(
         //             data.sort((a, b) => new Date(b.completion_date) - new Date(a.completion_date))

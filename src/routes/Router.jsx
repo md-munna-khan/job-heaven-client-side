@@ -106,6 +106,7 @@ const router = createBrowserRouter ([
       path:'payment-history',
       element:<PaymentHistory></PaymentHistory>
     },
+    // admin route
     {
       path:'admin-home',
       element:<AdminHome></AdminHome>

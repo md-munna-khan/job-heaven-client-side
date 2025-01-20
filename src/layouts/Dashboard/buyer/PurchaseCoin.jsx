@@ -12,7 +12,7 @@ const PurchaseCoin = () => {
     { coins: 1000, price: 35 },
   ];
 
-  const handlePaymentRedirect = (amount, coins) => {
+  const handlePaymentRedirect = (amount) => {
     // Redirect to payment page with the specific amount and coins to be paid
     navigate(`/dashboard/payment-card/${amount*100}`);
   };
