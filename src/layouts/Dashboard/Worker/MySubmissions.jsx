@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import { Toaster, toast } from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../../assets/shared/LoadingSpinner";
 
 const MySubmissions = () => {
   const { user } = useAuth();
@@ -46,7 +47,7 @@ const MySubmissions = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="text-xl font-bold">Loading...</div>
+        <LoadingSpinner></LoadingSpinner>
       </div>
     );
   }

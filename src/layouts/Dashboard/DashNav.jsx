@@ -14,7 +14,7 @@ const DashNavbar = () => {
   const [isShow, setIsShow] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
   const [coin, setCoin] = useState(null); // State to hold the coin value
-  const { user, logOut } = useAuth();
+  const { user,userInfo, setUserInfo,logOut } = useAuth();
   const [role, isLoading] = useRole();
 
   const getUserRole = async (email) => {
@@ -76,7 +76,7 @@ const DashNavbar = () => {
                     Role: {role}
                   </NavLink>
                   <NavLink to="/" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>
-                    Available Coin: {coin || 0}
+                    Available Coin:{userInfo.defaultCoins || 0}
                   </NavLink>
                   <NavLink to="/profile" className="flex items-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>
                     <img src={user.photoURL || "/default-avatar.png"} alt="User" className="w-8 h-8 rounded-full mr-2" />
@@ -109,7 +109,7 @@ const DashNavbar = () => {
                 <>
                 
                   <NavLink to="/" className="px-4 py-2" onClick={handleLinkClick}>
-                    Available Coin: {coin || 0}
+                    Available Coin: {userInfo.defaultCoins || 0}
                   </NavLink>
                   <NavLink to="/" className="px-4 py-2" onClick={handleLinkClick}>
                     Role: {role}

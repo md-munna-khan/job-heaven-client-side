@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import LoadingSpinner from '../../../assets/shared/LoadingSpinner';
 
 const WorkerHome = () => {
   const { user } = useAuth();
@@ -26,7 +27,7 @@ const WorkerHome = () => {
 
   if (loading) {
     return (
-      <div className="text-center text-xl text-gray-500">Loading worker stats...</div>
+     <LoadingSpinner></LoadingSpinner>
     );
   }
 

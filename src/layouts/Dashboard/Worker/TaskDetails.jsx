@@ -7,6 +7,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
+import LoadingSpinner from "../../../assets/shared/LoadingSpinner";
 
 const TaskDetails = () => {
   const { id } = useParams(); // Get taskId from URL params
@@ -63,7 +64,7 @@ const TaskDetails = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="text-xl font-bold">Loading...</div>
+     <LoadingSpinner></LoadingSpinner>
       </div>
     );
   }

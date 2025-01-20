@@ -1,22 +1,30 @@
-import PropTypes from 'prop-types'
-import { ScaleLoader } from 'react-spinners'
+import { CirclesWithBar } from "react-loader-spinner";
 
-const LoadingSpinner = ({ smallHeight }) => {
+const LoadingSpinner = () => {
   return (
-    <div
-      className={` ${smallHeight ? 'h-[250px]' : 'h-[70vh]'}
-      flex 
-      flex-col 
-      justify-center 
-      items-center `}
-    >
-      <ScaleLoader size={100} color='lime' />
+    <div>
+      <div className="flex justify-center items-center h-screen">
+        <div>
+          <CirclesWithBar
+            height="100"
+            width="100"
+            color="#4fa94d"
+            outerCircleColor="#4fa94d"
+            innerCircleColor="#4fa94d"
+            barColor="#4fa94d"
+            ariaLabel="circles-with-bar-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-LoadingSpinner.propTypes = {
-  smallHeight: PropTypes.bool,
-}
 
-export default LoadingSpinner
+
+
+
+export default LoadingSpinner;

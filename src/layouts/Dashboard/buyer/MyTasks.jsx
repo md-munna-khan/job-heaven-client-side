@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";  // Import SweetAlert2
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../../assets/shared/LoadingSpinner";
 
 const MyTasks = () => {
   const { user } = useAuth();
@@ -29,7 +30,7 @@ const MyTasks = () => {
       },
 })
 if (isLoading) {
-  return <p>loading ...</p>; 
+  return <LoadingSpinner></LoadingSpinner>; 
 }
   // Handle Delete Task
   const handleDelete = async (taskId) => {
@@ -80,7 +81,7 @@ if (isLoading) {
   return (
     <div className="p-4">
       <h2 className="text-2xl font-semibold mb-4">My Tasks</h2>
-      {loading && <p className="text-center text-blue-500">Loading...</p>}
+      {loading && <LoadingSpinner></LoadingSpinner>}
 
       {!loading && tasks.length === 0 && (
         <p className="text-center text-gray-500">No tasks found.</p>

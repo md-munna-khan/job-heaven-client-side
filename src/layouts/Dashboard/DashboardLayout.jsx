@@ -35,12 +35,12 @@ useEffect(()=>{
       {/* Sidebar Section */}
       <DashNavbar></DashNavbar>
    
-     <div className="w-1/4  h-full mt-20 bg-gray-200 p-4  ">
+     <div className="w-1/5    mt-20  rounded-md border p-4  ">
         <Sidebar />
       </div>
 
       {/* Main Content Section */}
-      <div className="w-3/4 flex flex-col ">
+      <div className="w-4/5 flex flex-col ">
         {/* Main Content Area */}
         <div className="flex-1 overflow-y-auto  mt-20 p-4">
           <Outlet />

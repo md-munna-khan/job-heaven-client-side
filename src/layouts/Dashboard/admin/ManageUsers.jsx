@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
+import LoadingSpinner from "../../../assets/shared/LoadingSpinner";
 
 const ManageUsers = () => {
   const { user } = useAuth(); // Get current user info
@@ -71,7 +72,7 @@ const handleUpdateRole = async (userEmail, newRole) => {
     }
   };
   // Show loading spinner while fetching users
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   // Handle error case
   if (isError || !Array.isArray(usersData)) {

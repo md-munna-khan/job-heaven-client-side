@@ -1,14 +1,11 @@
 
-
-
-
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
-
+import logo from '../../../public/job-logo-icon-with-tie-image-free-vector-removebg-preview.png'
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -49,11 +46,16 @@ const Navbar = () => {
     window.scrollTo(0, 0);
   };
 
-  useEffect(() => {
-    if (user && user.displayName) {
-      toast.success(`Hey! Welcome, ${user.displayName}`);
-    }
-  }, [user]);
+ 
+    // if (user && user.displayName) {
+    //   toast.success(`Hey! Welcome, ${user.displayName}`);
+    // }
+  
+  // useEffect(() => {
+  //   if (user && user.displayName) {
+  //     toast.success(`Hey! Welcome, ${user.displayName}`);
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     if (user?.email) {
@@ -75,7 +77,8 @@ const Navbar = () => {
             <div>
               <Link className="logo flex items-center" to="/">
                 <div className="text-xl flex md:text-2xl text-red-500 font-semibold">
-                  Job Heaven
+                <img className="w-14 h-14" src={logo} alt="" />
+                   Heaven
                 </div>
               </Link>
             </div>
@@ -99,21 +102,21 @@ const Navbar = () => {
                 <>
                   <NavLink to="/dashboard" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Dashboard</NavLink>
                   <NavLink to="/" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Available Coin: {userInfo.defaultCoins || 0}</NavLink>
-                  <NavLink to="/profile" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>User Profile</NavLink>
+                  {/* <NavLink to="/profile" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>User Profile</NavLink> */}
 
-                  {/* <NavLink
+                  <NavLink
                     to="/profile"
                     className="px-4 py-2"
                     onClick={handleLinkClick}
                   >
-                    <div className="flex p-2 items-center space-x-2">
+                    <div className="flex  items-center space-x-2">
                       <img
                         src={user.photoURL || "/default-avatar.png"}
                         alt="User Profile"
                         className="w-8 h-8 rounded-full border"
-                      /> Profile
+                      /> 
                     </div>
-                  </NavLink> */}
+                  </NavLink>
                   <NavLink
                     to="#"
                     onClick={() => window.open("https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-md-munna-khan", "_blank")}

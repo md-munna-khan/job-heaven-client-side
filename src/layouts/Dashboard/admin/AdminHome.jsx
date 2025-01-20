@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { ClipLoader } from 'react-spinners'; // You can use any loading spinner you like
 import AdminWithdrawals from './AdminWithdrawals';
+import LoadingSpinner from '../../../assets/shared/LoadingSpinner';
 
 const AdminHome = () => {
   const [stats, setStats] = useState(null);
@@ -28,7 +29,7 @@ const AdminHome = () => {
     return (
       <div className="text-center text-xl text-gray-500">
         <ClipLoader color="#4B5563" size={50} />
-        <p>Loading admin stats...</p>
+        <p><LoadingSpinner></LoadingSpinner></p>
       </div>
     );
   }

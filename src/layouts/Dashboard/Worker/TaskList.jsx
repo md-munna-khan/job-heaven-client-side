@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import LoadingSpinner from '../../../assets/shared/LoadingSpinner';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -67,7 +68,7 @@ const TaskList = () => {
     <div className="task-list p-6">
       <h1 className="text-3xl text-center mb-4 font-bold">Task List</h1>
       {isLoading ? (
-        <p className="text-center">Loading tasks...</p>
+       <LoadingSpinner></LoadingSpinner>
       ) : tasks.length === 0 ? (
         <p className="text-center">No tasks available...</p>
       ) : (

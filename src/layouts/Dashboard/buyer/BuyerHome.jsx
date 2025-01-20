@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import LoadingSpinner from '../../../assets/shared/LoadingSpinner';
 
 const BuyerHome = () => {
   const { user } = useAuth(); // Get the logged-in user
@@ -30,7 +31,7 @@ const BuyerHome = () => {
   }, [axiosSecure, user?.email]);
 
   if (loading) {
-    return <div className="text-center text-xl text-gray-500">Loading buyer stats...</div>;
+    return <div className="text-center text-xl text-gray-500"><LoadingSpinner></LoadingSpinner></div>;
   }
 
   if (error) {

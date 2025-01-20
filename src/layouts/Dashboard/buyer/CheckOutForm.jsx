@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const CheckOutForm = ({ amount }) => {
 
-    const { user, refetch } = useAuth();
+    const {getUserRole, user, setUserInfo } = useAuth();
     const navigate = useNavigate();
 
     const stripe = useStripe();
@@ -57,12 +57,17 @@ const CheckOutForm = ({ amount }) => {
        
     
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/payment-success/${user.email}`, {
+           axios.post(`${import.meta.env.VITE_API_URL}/payment-success/${user.email}`, {
                 paymentId: paymentIntent.id,
                 amount: paymentIntent.amount,
-            });
-            refetch();
-            navigate('/dashboard/payment-history');
+            })
+            .then(res=>{
+                console.log(res)
+               setUserInfo()
+                getUserRole()
+                navigate('/dashboard/payment-history');
+            })
+          
         } catch (err) {
             toast.error("Payment recorded successfully, but failed to update backend.");
 
@@ -105,4 +110,8 @@ const CheckOutForm = ({ amount }) => {
 };
 
 export default CheckOutForm;
+
+
+
+
  
