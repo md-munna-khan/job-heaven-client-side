@@ -23,6 +23,9 @@ import TaskToReview from "../layouts/Dashboard/buyer/TaskToReview";
 import ApprovedSubmissions from "../layouts/Dashboard/Worker/ApprovedSubmissions";
 import WorkerHome from "../layouts/Dashboard/Worker/WorkerHome";
 import BuyerHome from "../layouts/Dashboard/buyer/BuyerHome";
+import PrivateRoute from "./PrivateRoute";
+import BuyerRoute from "../layouts/Dashboard/buyer/BuyerRoute";
+import AdminRoute from "../layouts/Dashboard/admin/AdminRoute";
 
 
 
@@ -50,74 +53,74 @@ const router = createBrowserRouter ([
 },
 {
   path:'/dashboard',
-  element:<DashboardLayout></DashboardLayout>,
+  element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
   children:[
     // worker route
     {
       path:'/dashboard/worker',
-      element:<WorkerHome></WorkerHome>
+      element:<PrivateRoute><WorkerHome></WorkerHome></PrivateRoute>
     },
     {
       path:'approved-submissions',
-      element:<ApprovedSubmissions></ApprovedSubmissions>
+      element:<PrivateRoute><ApprovedSubmissions></ApprovedSubmissions></PrivateRoute>
     },
     {
       path:'task-list',
-      element:<TaskList></TaskList>
+      element:<PrivateRoute><TaskList></TaskList></PrivateRoute>
     },
     {
       path:'my-submissions',
-      element:<MySubmissions></MySubmissions>
+      element:<PrivateRoute><MySubmissions></MySubmissions></PrivateRoute>
     },
     {
       path:'withdrawals',
-      element:<Withdrawals></Withdrawals>
+      element:<PrivateRoute><Withdrawals></Withdrawals></PrivateRoute>
     },
     {
       path:'task-details/:id',
-      element:<TaskDetails></TaskDetails>
+      element:<PrivateRoute><TaskDetails></TaskDetails></PrivateRoute>
     },
     // buyer route
     {
       path:"/dashboard/buyer",
-      element:<BuyerHome></BuyerHome>
+      element:<BuyerRoute><BuyerHome></BuyerHome></BuyerRoute>
     },
     {
       path:"task-to-review",
-      element:<TaskToReview></TaskToReview>
+      element:<BuyerRoute><TaskToReview></TaskToReview></BuyerRoute>
     },
     {
       path:'add-new-tasks',
-      element:<AddNewTasks></AddNewTasks>
+      element:<BuyerRoute><AddNewTasks></AddNewTasks></BuyerRoute>
     },
     {
       path:'payment-card/:amount',
-      element:<PaymentCards></PaymentCards>
+      element:<BuyerRoute><PaymentCards></PaymentCards></BuyerRoute>
     },
     {
       path:'my-tasks',
-      element:<MyTasks></MyTasks>
+      element:<BuyerRoute><MyTasks></MyTasks></BuyerRoute>
     },
     {
       path:'purchase-coin',
-      element:<PurchaseCoin></PurchaseCoin>
+      element:<BuyerRoute><PurchaseCoin></PurchaseCoin></BuyerRoute>
     },
     {
       path:'payment-history',
-      element:<PaymentHistory></PaymentHistory>
+      element:<BuyerRoute><PaymentHistory></PaymentHistory></BuyerRoute>
     },
     // admin route
     {
       path:'admin-home',
-      element:<AdminHome></AdminHome>
+      element:<AdminRoute><AdminHome></AdminHome></AdminRoute>
     },
     {
       path:'manage-users',
-      element:<ManageUsers></ManageUsers>
+      element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
     },
     {
       path:'manage-task',
-      element:<ManageTask></ManageTask>
+      element:<AdminRoute><ManageTask></ManageTask></AdminRoute>
     },
   ]
 }

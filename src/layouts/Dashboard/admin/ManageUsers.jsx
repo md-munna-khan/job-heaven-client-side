@@ -59,7 +59,7 @@ const handleUpdateRole = async (userEmail, newRole) => {
         return;
       }
   
-      const response = await axiosSecure.patch(`/update-role/${user?.email}`, {
+      const response = await axiosSecure.patch(`/update-role/${userEmail}`, {
         newRole: newRole, // Send the new role in the request body
       });
   
@@ -131,7 +131,7 @@ const handleUpdateRole = async (userEmail, newRole) => {
                       <select
                         defaultValue={userData.role}
                         onChange={(e) =>
-                          handleUpdateRole(userData._id, e.target.value)
+                          handleUpdateRole(userData?.email, e.target.value)
                         }
                         className="border rounded px-2 py-1"
                       >

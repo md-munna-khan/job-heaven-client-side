@@ -3,7 +3,7 @@ import { FaHome, FaTasks, FaUser } from "react-icons/fa";
 
 const AdminMenu = () => {
   return (
-    <div className="p-6 bg-gray-50 rounded-lg shadow-lg">
+    <div className="p-6 mt-20 bg-gray-50 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-gray-700 mb-4">Admin Menu</h2>
       <ul className="space-y-4">
         <li>

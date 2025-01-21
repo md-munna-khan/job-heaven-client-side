@@ -8,7 +8,7 @@ import { imageUpload } from "../../../api/utils";
 
 const AddNewTask = () => {
   const axiosSecure = useAxiosSecure();
-  const { coin, setCoin, user } = useAuth();
+  const { coin, setCoin, user,refetch } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -81,16 +81,17 @@ const AddNewTask = () => {
       // if (data){
       //   toast.success('task added successfully')
       // }
-
+console.log( 'data',data)
       if (data?.acknowledged) {
         // Deduct coins and update balance
         const updatedCoins = coin - totalPayableAmount;
-        const coinResponse = await axiosSecure.put(`/users/coins/${user.email}`, {
+        const coinResponse = await axiosSecure.put(`/users/coins/${user?.email}`, {
           coinAmount: updatedCoins,
         });
-
-        if (coinResponse.data?.message === "Coin balance updated successfully") {
+console.log(coinResponse)
+        if (coinResponse.data?.message) {
           setCoin(updatedCoins);
+          refetch()
           toast.success("Task added and balance updated successfully!");
         
           form.reset();

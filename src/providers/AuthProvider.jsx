@@ -18,6 +18,8 @@ import {
 } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
 import axios from 'axios'
+import useAxiosSecure from '../hooks/useAxiosSecure'
+import { useQuery } from '@tanstack/react-query'
 
 
 
@@ -35,7 +37,19 @@ const AuthProvider = ({ children }) => {
 const[userInfo,setUserInfo]=useState({})
   const [coinLoading, setCoinLoading] = useState(false);
 
+  
+        const {data:coins={},refetch}=useQuery({
+          queryKey:['coins',user?.email],
+          queryFn:async()=>{
+            const {data}=await axios.get(`${import.meta.env.VITE_API_URL}/users/role/${user?.email}`)
+            return data
+          }
+        })
+      console.log('jhamela',coins)
       
+ 
+
+
   const getUserRole = async (email) => {
     setCoinLoading(true); // Set loading to true
     try {
@@ -79,37 +93,40 @@ const[userInfo,setUserInfo]=useState({})
     })
   }
 
-  // onAuthStateChange
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async currentUser => {
-      console.log('CurrentUser-->', currentUser?.email)
-      if (currentUser?.email) {
-        setUser(currentUser)
-        //
-        if (currentUser?.email) {
-          await getUserRole(currentUser.email); // Fetch user role on login
-        }
+  // onAuthStateChange main
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, async currentUser => {
+  //     console.log('CurrentUser-->', currentUser?.email)
+  //     if (currentUser?.email) {
+  //       setUser(currentUser)
+  //       //
+  //       if (currentUser?.email) {
+  //         await getUserRole(currentUser.email); // Fetch user role on login
+  //       }
 
-        // Get JWT token
-        await axios.post(
-          `${import.meta.env.VITE_API_URL}/jwt`,
-          {
-            email: currentUser?.email,
-          },
-          { withCredentials: true }
-        )
-      } else {
-        setUser(currentUser)
-        await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-          withCredentials: true,
-        })
-      }
-      setLoading(false)
-    })
-    return () => {
-      return unsubscribe()
-    }
-  }, [])
+  //       // Get JWT token
+  //       await axios.post(
+  //         `${import.meta.env.VITE_API_URL}/jwt`,
+  //         {
+  //           email: currentUser?.email,
+  //         },
+  //         { withCredentials: true }
+  //       )
+  //     } else {
+  //       setUser(currentUser)
+  //       await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+  //         withCredentials: true,
+  //       })
+  //     }
+  //     setLoading(false)
+  //   })
+  //   return () => {
+  //     return unsubscribe()
+  //   }
+  // }, [])
+
+ 
+  //local  storage  jhankar vai 
 //   useEffect(()=>{
 //     const unSubscribe= onAuthStateChanged(auth,currentUser=>{
 //         setUser(currentUser)
@@ -135,6 +152,54 @@ const[userInfo,setUserInfo]=useState({})
 //     return unSubscribe()
 // }
 // },[axios])
+
+
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    console.log('CurrentUser -->', currentUser?.email);
+    
+    if (currentUser) {
+      setUser(currentUser);
+
+      // Fetch and save the user role
+      if (currentUser?.email) {
+        await getUserRole(currentUser.email);
+      }
+
+      // Get JWT token and save to local storage
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL}/jwt`,
+          { email: currentUser?.email },
+          { withCredentials: true }
+        );
+console.log(response.data)
+        if (response.data.token) {
+          localStorage.setItem('access-token', response.data.token); // Save token
+        }
+
+      } catch (error) {
+        console.error('Error fetching JWT token:', error);
+      }
+    } else {
+      // Remove user and token on logout
+      setUser(null);
+      localStorage.removeItem('access-token');
+      try {
+        await axios.get(`${import.meta.env.VITE_API_URL}/logout`, { withCredentials: true });
+      } catch (error) {
+        console.error('Error during logout:', error);
+      }
+    }
+
+    setLoading(false);
+  });
+
+  return () => {
+    unsubscribe();
+  };
+}, []);
+
 useEffect(() => {
   if (coin !== null) {
     console.log('Updated coin value:', coin);
@@ -157,8 +222,9 @@ useEffect(() => {
     getUserRole,
     coinLoading,
     userInfo,
-    setUserInfo
-   
+    setUserInfo,
+   coins,
+   refetch
   }
 
   return (

@@ -4,12 +4,13 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import { format } from "date-fns";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const Withdrawals = () => {
   const { user, coin } = useAuth();
   const [coinToWithdraw, setCoinToWithdraw] = useState("");
   const [paymentSystem, setPaymentSystem] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-
+const axiosSecure=useAxiosSecure()
   const handleCoinChange = (e) => {
     const coinValue = e.target.value;
     if (coinValue <= coin) {
@@ -41,10 +42,14 @@ const Withdrawals = () => {
     };
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/addWithdrawals`,
+      const response = await axiosSecure.post(
+        `/addWithdrawals`,
         withdrawalData
       );
+      // const response = await axios.post(
+      //   `${import.meta.env.VITE_API_URL}/addWithdrawals`,
+      //   withdrawalData
+      // );
 
       if (response.status === 201) {
         toast.success("Withdrawal request submitted successfully!");

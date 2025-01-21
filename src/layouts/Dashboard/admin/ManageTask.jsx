@@ -23,7 +23,7 @@ const ManageTask = () => {
   const { data:tasks=[],isLoading,refetch } = useQuery({
     queryKey:['task',user],
     queryFn: async () => {
-        const { data } = await axiosSecure(`/Tasks?email=${user?.email}`)
+        const { data } = await axiosSecure.get(`/Tasks?email=${user?.email}`)
         console.log(data)
         // setTasks(
         //             data.sort((a, b) => new Date(b.completion_date) - new Date(a.completion_date))

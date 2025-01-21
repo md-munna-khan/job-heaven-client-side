@@ -14,14 +14,14 @@ const AdminHome = () => {
     const fetchAdminStats = async () => {
       try {
         const response = await axiosSecure.get('/admin-stats'); // Backend endpoint for admin stats
-        setStats(response.data);
+        setStats(response?.data);
         setLoading(false);
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to fetch admin stats');
         setLoading(false);
       }
     };
-
+console.log('bipod',stats)
     fetchAdminStats();
   }, [axiosSecure]);
 
@@ -43,7 +43,7 @@ const AdminHome = () => {
   }
 
   // Destructure stats with default values in case of missing data
-  const { totalWorkers = 0, totalBuyers = 0, totalCoins = 0, totalPayments = 0 } = stats;
+  const { totalWorkers = 0, totalBuyers = 0, totalAvailableCoins= 0, totalPayments = 0 } = stats;
 
   return (
     <div className="container mx-auto p-6">
@@ -66,7 +66,8 @@ const AdminHome = () => {
         {/* Total Available Coins */}
         <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
           <h3 className="text-xl font-medium text-gray-700">Total Available Coins</h3>
-          <p className="text-2xl font-bold text-yellow-500">{totalCoins}</p>
+          <p className="text-2xl font-bold text-yellow-500">{totalAvailableCoins
+          }</p>
         </div>
 
         {/* Total Payments */}

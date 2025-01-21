@@ -5,12 +5,13 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const CheckOutForm = ({ amount }) => {
 
-    const {getUserRole, user, setUserInfo } = useAuth();
+    const {getUserRole, user,refetch, setUserInfo } = useAuth();
     const navigate = useNavigate();
-
+const axiosSecure=useAxiosSecure()
     const stripe = useStripe();
     const elements = useElements();
     const amountInCents = parseInt(amount);
@@ -28,9 +29,14 @@ const CheckOutForm = ({ amount }) => {
 
         try {
             // Get clientSecret from the backend
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/create-payment-intent`, {
-                amount: amountInCents,
+            const { data } = await axiosSecure.post(`/create-payment-intent`, {
+                amount: amountInCents,   
             });
+           
+            // const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/create-payment-intent`, {
+            //     amount: amountInCents,   
+            // });
+           
 
             const clientSecret = data.clientSecret;
 
@@ -42,7 +48,9 @@ const CheckOutForm = ({ amount }) => {
                         name: user.email,
                     },
                 },
+               
             });
+            toast.success("Payment Successful!", { position: "top-right" });
 
             if (error) {
                 console.error("Payment Error:", error);
@@ -57,12 +65,17 @@ const CheckOutForm = ({ amount }) => {
        
     
         try {
-           axios.post(`${import.meta.env.VITE_API_URL}/payment-success/${user.email}`, {
+           axiosSecure.post(`/payment-success/${user.email}`, {
                 paymentId: paymentIntent.id,
                 amount: paymentIntent.amount,
+        //    axios.post(`${import.meta.env.VITE_API_URL}/payment-success/${user.email}`, {
+        //         paymentId: paymentIntent.id,
+        //         amount: paymentIntent.amount,
             })
             .then(res=>{
                 console.log(res)
+                toast.success('coins added successfully')
+                refetch()
                setUserInfo()
                 getUserRole()
                 navigate('/dashboard/payment-history');

@@ -6,6 +6,7 @@ import { RxCross1 } from "react-icons/rx";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import logo from '../../../public/job-logo-icon-with-tie-image-free-vector-removebg-preview.png'
+import useRole from "../../hooks/useRole";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -13,7 +14,8 @@ const Navbar = () => {
   const [isHidden, setIsHidden] = useState(true);
   // State to hold the coin value
   const {coin,userInfo, getUserRole, user, logOut } = useAuth();
- 
+  const [role] = useRole()
+ console.log(role)
 
 //   const getUserRole = async (email) => {
 //     try {
@@ -100,7 +102,15 @@ const Navbar = () => {
               )}
               {user && (
                 <>
-                  <NavLink to="/dashboard" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Dashboard</NavLink>
+
+
+                  <NavLink to={
+         role === 'Worker'
+            ? '/dashboard/worker'
+         : role === 'Buyer'
+            ? '/dashboard/buyer'
+           : '/dashboard/admin-home'
+          }className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Dashboard</NavLink>
                   <NavLink to="/" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Available Coin: {userInfo.defaultCoins || 0}</NavLink>
                   {/* <NavLink to="/profile" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>User Profile</NavLink> */}
 
