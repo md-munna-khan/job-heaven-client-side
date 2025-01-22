@@ -7,6 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 import { Toaster, toast } from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../assets/shared/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const MySubmissions = () => {
   const { user } = useAuth();
@@ -61,7 +62,10 @@ const MySubmissions = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container md:mt-20 mx-auto p-6">
+        <Helmet>
+                     <title> Job Heaven |My Submission</title>
+                      </Helmet>
       <Toaster position="top-center" reverseOrder={false} />
       <h1 className="text-4xl text-center mb-6 font-bold text-gray-800">My Submissions</h1>
 

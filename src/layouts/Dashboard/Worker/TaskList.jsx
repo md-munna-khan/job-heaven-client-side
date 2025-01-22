@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import LoadingSpinner from '../../../assets/shared/LoadingSpinner';
+import { Helmet } from 'react-helmet-async';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -65,7 +66,10 @@ const TaskList = () => {
   };
 
   return (
-    <div className="task-list p-6">
+    <div className="task-list md:mt-20 p-6">
+               <Helmet>
+                     <title> Job Heaven |Task List</title>
+                      </Helmet>
       <h1 className="text-3xl text-center mb-4 font-bold">Task List</h1>
       {isLoading ? (
        <LoadingSpinner></LoadingSpinner>

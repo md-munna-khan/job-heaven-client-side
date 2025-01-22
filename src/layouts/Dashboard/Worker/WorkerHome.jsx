@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import LoadingSpinner from '../../../assets/shared/LoadingSpinner';
+import { Helmet } from 'react-helmet-async';
 
 const WorkerHome = () => {
   const { user } = useAuth();
@@ -42,7 +43,10 @@ const WorkerHome = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-semibold mb-6 text-center text-blue-600">
+       <Helmet>
+               <title> Job Heaven |Home</title>
+                </Helmet>
+      <h2 className="text-3xl md:mt-20 font-semibold mb-6 text-center text-blue-600">
         Welcome, {user?.displayName || 'Worker'}!
       </h2>
 

@@ -2,23 +2,23 @@ import "aos/dist/aos.css"; // Import AOS styles
 import AOS from "aos";
 import { FaFacebook, FaLinkedin, FaYoutube, FaInstagram, FaGithub } from "react-icons/fa"; // Import React Icons
 import React from "react";
-
+import logo from '../../../public/job-logo-icon-with-tie-image-free-vector-removebg-preview.png'
 const Footer = () => {
   React.useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
   return (
-    <footer className="rounded-lg bg-blue-500 my-4 container mx-auto py-4">
+    <footer className="rounded-lg  my-4 container mx-auto py-4">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Logo and Name */}
         <div className="flex flex-col items-start" data-aos="fade-down">
-          <img
-            // src={logo} // Replace with your logo
+         <div className="inline-flex"> <img
+            src={logo}
             alt="Logo"
             className="w-10 h-10 rounded-full"
           />
-          <h2 className="text-xl font-bold">Job Heaven</h2>
+          <h2 className="text-xl font-bold"> Heaven</h2></div>
           <p className="text-sm mt-2">Build Your  Futures With Us</p>
         </div>
 
@@ -35,7 +35,7 @@ const Footer = () => {
               href="https://www.facebook.com/md.munna.362879"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-white transition-colors"
+              className="  transition-colors"
             >
               <FaFacebook size={24} />
             </a>
@@ -44,7 +44,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/munna-mia/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-white transition-colors"
+              className=" transition-colors"
             >
               <FaLinkedin size={24} />
             </a>
@@ -53,7 +53,7 @@ const Footer = () => {
               href="https://www.youtube.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-white transition-colors"
+              className=" transition-colors"
             >
               <FaYoutube size={24} />
             </a>
@@ -62,7 +62,7 @@ const Footer = () => {
               href="https://www.instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-white transition-colors"
+              className=" transition-colors"
             >
               <FaInstagram size={24} />
             </a>
@@ -71,7 +71,7 @@ const Footer = () => {
               href="https://github.com/md-munna-khan/Md.munna-mia"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-white transition-colors"
+              className=" transition-colors"
             >
               <FaGithub size={24} />
             </a>

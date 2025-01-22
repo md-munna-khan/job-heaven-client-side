@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";  // Import SweetAlert2
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../assets/shared/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const ManageTask = () => {
   const { user } = useAuth();
@@ -81,7 +82,10 @@ if (isLoading) {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 md:mt-20">
+        <Helmet>
+         <title> Job Heaven | Manage-Task</title>
+          </Helmet>
       <h2 className="text-2xl font-semibold mb-4">Manage  Tasks</h2>
       {loading && <p className="text-center text-blue-500">Loading...</p>}
 

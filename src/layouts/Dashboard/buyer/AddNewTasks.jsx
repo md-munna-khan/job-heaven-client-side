@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { imageUpload } from "../../../api/utils";
+import { Helmet } from "react-helmet-async";
 
 const AddNewTask = () => {
   const axiosSecure = useAxiosSecure();
@@ -109,7 +110,10 @@ console.log(coinResponse)
   };
 
   return (
-    <div className="flex justify-center py-4 items-center min-h-[calc(100vh-306px)] my-12">
+    <div className="flex justify-center md:mt-20 py-4 items-center min-h-[calc(100vh-306px)] my-12">
+        <Helmet>
+                    <title> Job Heaven | Add New Task</title>
+                  </Helmet>
       <section className="p-6 mx-auto bg-white rounded-md shadow-md w-full max-w-4xl">
         <h2 className="text-xl font-semibold text-gray-700 capitalize">Post a Task</h2>
         <form onSubmit={handleSubmit}>

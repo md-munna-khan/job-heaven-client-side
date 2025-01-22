@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure, { axiosSecure } from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const PaymentHistory = () => {
@@ -24,9 +25,12 @@ const axiosSecure=useAxiosSecure()
         fetchPaymentHistory();
     }, [user?.email]);
 
-
+  
     return (
-        <div className="p-4">
+        <div className="p-4 md:mt-20">
+              <Helmet> 
+               <title> Job Heaven | Payment History</title>
+             </Helmet>
             <h2 className="text-2xl font-bold mb-4">Payment History</h2>
             <div className="overflow-x-auto">
                 <table className="table-auto border-collapse border border-gray-300 w-full">

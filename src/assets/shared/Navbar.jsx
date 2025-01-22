@@ -78,7 +78,7 @@ const Navbar = () => {
           <nav className="flex justify-between items-center">
             <div>
               <Link className="logo flex items-center" to="/">
-                <div className="text-xl flex md:text-2xl text-red-500 font-semibold">
+                <div className="text-xl flex md:text-2xl font-bold">
                 <img className="w-14 h-14" src={logo} alt="" />
                    Heaven
                 </div>
@@ -86,7 +86,7 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Menu */}
-            <div className="lg:flex space-x-4 text-lg font-bold text-red-500 hidden">
+            <div className="lg:flex space-x-4 text-lg font-bold  hidden">
               {!user && (
                 <>
                   <NavLink to="/login" className="px-4 py-2" onClick={handleLinkClick}>Login</NavLink>
@@ -94,7 +94,7 @@ const Navbar = () => {
                   <NavLink
                     to="#"
                     onClick={() => window.open("https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-md-munna-khan", "_blank")}
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                    className="px-4 py-2 bg-black text-white rounded  transition duration-300"
                   >
                     Join as Developer
                   </NavLink>
@@ -110,9 +110,9 @@ const Navbar = () => {
          : role === 'Buyer'
             ? '/dashboard/buyer'
            : '/dashboard/admin-home'
-          }className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Dashboard</NavLink>
-                  <NavLink to="/" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Available Coin: {userInfo.defaultCoins || 0}</NavLink>
-                  {/* <NavLink to="/profile" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>User Profile</NavLink> */}
+          }className="px-4 py-2 bg-black text-white rounded hover:bg-blue-600 transition duration-300" onClick={handleLinkClick}>Dashboard</NavLink>
+                  <NavLink to="/" className="px-4 py-2 bg-black text-white rounded  transition duration-300" onClick={handleLinkClick}>Available Coin: {userInfo.defaultCoins || 0}</NavLink>
+                
 
                   <NavLink
                     to="/profile"
@@ -130,7 +130,7 @@ const Navbar = () => {
                   <NavLink
                     to="#"
                     onClick={() => window.open("https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-md-munna-khan", "_blank")}
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                    className="px-4 py-2 bg-black text-white rounded transition duration-300"
                   >
                     Join as Developer
                   </NavLink>
@@ -168,20 +168,11 @@ const Navbar = () => {
                 <>
                   <NavLink to="/dashboard" className="px-4 py-2" onClick={handleLinkClick}>Dashboard</NavLink>
                   <NavLink to="/" className="px-4 py-2" onClick={handleLinkClick}>Available Coin: {userInfo.defaultCoins || 0}</NavLink>
-                  <NavLink  to="/join" className="px-4 py-2"  onClick={handleLinkClick}> User Profile </NavLink>
-                  {/* <NavLink
-                    to="/profile"
-                    className="px-4 py-2"
-                    onClick={handleLinkClick}
-                  >
-                    <div className="flex p-2 items-center space-x-2">
-                      <img
-                        src={user.photoURL || "/default-avatar.png"}
-                        alt="User Profile"
-                        className="w-8 h-8 rounded-full border"
-                      /> Profile
-                    </div>
-                  </NavLink> */}
+               
+                  <NavLink to="/profile" className=" flex items-center mx-auto px-4 py-2" >
+                 <img src={user.photoURL || "/default-avatar.png"} alt="User" className="w-8  h-8  justify-center rounded-full mr-2" />
+                  {user.displayName || "User"}
+                 </NavLink>
                 </>
                  
               )}

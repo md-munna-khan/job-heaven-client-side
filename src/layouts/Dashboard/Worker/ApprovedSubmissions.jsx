@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 import LoadingSpinner from "../../../assets/shared/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const ApprovedSubmissions = () => {
   const { user } = useAuth();
@@ -30,7 +31,10 @@ const ApprovedSubmissions = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container md:mt-20 mx-auto p-6">
+           <Helmet>
+               <title> Job Heaven |Approved</title>
+                </Helmet>
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
         Approved Submissions
       </h2>

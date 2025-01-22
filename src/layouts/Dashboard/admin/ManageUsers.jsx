@@ -84,7 +84,7 @@ const handleUpdateRole = async (userEmail, newRole) => {
       <Helmet>
         <title>Manage Users</title>
       </Helmet>
-      <div className="container mx-auto px-4 sm:px-8">
+      <div className="container md:mt-20 mx-auto px-4 sm:px-8">
         <div className="py-8">
           <h2 className="text-2xl font-semibold leading-tight">Manage Users</h2>
           <div className="overflow-x-auto">

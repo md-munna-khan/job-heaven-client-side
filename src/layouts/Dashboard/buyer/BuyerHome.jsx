@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import LoadingSpinner from '../../../assets/shared/LoadingSpinner';
+import { Helmet } from 'react-helmet-async';
 
 const BuyerHome = () => {
   const { user } = useAuth(); // Get the logged-in user
@@ -41,7 +42,10 @@ const BuyerHome = () => {
   const totalPayment = buyerStats?.totalPayment ?? 0;
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container md:mt-20 mx-auto p-6">
+        <Helmet>
+                    <title> Job Heaven | Buyer Home</title>
+                  </Helmet>
       <h2 className="text-3xl font-semibold mb-6 text-center text-blue-600">
         Welcome, {user?.displayName || 'Buyer'}!
       </h2>

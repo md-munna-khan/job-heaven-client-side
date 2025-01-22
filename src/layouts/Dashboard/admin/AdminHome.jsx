@@ -3,6 +3,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { ClipLoader } from 'react-spinners'; // You can use any loading spinner you like
 import AdminWithdrawals from './AdminWithdrawals';
 import LoadingSpinner from '../../../assets/shared/LoadingSpinner';
+import { Helmet } from 'react-helmet-async';
 
 const AdminHome = () => {
   const [stats, setStats] = useState(null);
@@ -46,7 +47,10 @@ console.log('bipod',stats)
   const { totalWorkers = 0, totalBuyers = 0, totalAvailableCoins= 0, totalPayments = 0 } = stats;
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container md:mt-20 mx-auto p-6">
+         <Helmet>
+              <title> Job Heaven | Admin-Home</title>
+            </Helmet>
       <h2 className="text-3xl font-semibold mb-6 text-center text-blue-600">Admin Dashboard</h2>
 
       {/* Stats Cards */}

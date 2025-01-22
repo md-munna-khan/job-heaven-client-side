@@ -5,6 +5,7 @@ import { toast, Toaster } from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import { format } from "date-fns";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 const Withdrawals = () => {
   const { user, coin } = useAuth();
   const [coinToWithdraw, setCoinToWithdraw] = useState("");
@@ -68,7 +69,10 @@ const axiosSecure=useAxiosSecure()
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container md:mt-20 mx-auto p-6">
+                  <Helmet>
+                     <title> Job Heaven | Withdraw</title>
+                      </Helmet>
       <Toaster position="top-center" reverseOrder={false} />
       <h1 className="text-4xl font-bold mb-6 text-center">Withdraw Coins</h1>
 
