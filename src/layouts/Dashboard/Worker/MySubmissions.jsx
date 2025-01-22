@@ -62,7 +62,7 @@ const MySubmissions = () => {
   }
 
   return (
-    <div className="container md:mt-20 mx-auto p-6">
+    <div className="container overflow-hidden md:mt-20 mx-auto p-6">
         <Helmet>
                      <title> Job Heaven |My Submission</title>
                       </Helmet>
@@ -110,7 +110,7 @@ const MySubmissions = () => {
       </table>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex flex-wrap justify-center mt-4 space-x-2">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index}
@@ -128,6 +128,8 @@ const MySubmissions = () => {
 };
 
 export default MySubmissions;
+
+
 
 
 

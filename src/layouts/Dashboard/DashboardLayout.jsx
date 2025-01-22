@@ -17,7 +17,7 @@ const DashboardLayout = () => {
       <DashNavbar />
 
       {/* Sidebar Section */}
-      <div className="w-full md:w-1/5 mt-16 md:mt-0 md:rounded-md border md:p-4 bg-shadow-100">
+      <div className="w-full md:w-72 mt-16 md:mt-0 md:rounded-md border md:p-4 bg-shadow-400">
         <Sidebar />
       </div>
 

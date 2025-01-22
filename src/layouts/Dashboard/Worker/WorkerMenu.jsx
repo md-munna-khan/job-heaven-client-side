@@ -8,8 +8,8 @@ import { BiMoneyWithdraw } from "react-icons/bi";
 
 const WorkerMenu = () => {
   return (
-    <div className="p-4 md:p-6 md:mt-20 bg-gray-50 rounded-lg shadow-lg">
-      <h2 className="text-xl md:text-2xl font-bold text-gray-700 mb-4 text-center md:text-left">
+    <div className="p-4  md:p-6  md:mt-20 bg-gray-50 rounded-lg shadow-lg">
+      <h2 className="text-xl md:text-2xl  font-bold text-gray-700 mb-4 text-center md:text-left">
         Worker Menu
       </h2>
       <ul className="space-y-3 md:space-y-4">

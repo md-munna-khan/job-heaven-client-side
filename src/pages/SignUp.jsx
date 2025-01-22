@@ -9,21 +9,32 @@ import useAuth from '../hooks/useAuth';
 import { imageUpload, saveUser } from '../api/utils';
 import { Helmet } from 'react-helmet-async';
 
-
 const SignUp = () => {
-  const { setUserInfo,userInfo, role,setRole, createUser, updateUserProfile, signInWithGoogle, loading } = useAuth();
+  const { setUserInfo, role, setRole, createUser, updateUserProfile, signInWithGoogle, loading } = useAuth();
   const navigate = useNavigate();
 
   // Form submit handler
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password = form.password.value;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const password = form.password.value.trim();
     const image = form.image.files[0];
-    // const role = role;
-    
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error('Invalid email format');
+      return;
+    }
+
+    // Password validation (at least 8 characters, one uppercase, one lowercase, one number, and one special character)
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error('Password must be at least 8 characters long, include uppercase, lowercase, number, and special character.');
+      return;
+    }
 
     // Upload the image
     const formData = new FormData();
@@ -36,33 +47,36 @@ const SignUp = () => {
 
       // Update user profile with name and image
       await updateUserProfile(name, imageUrl);
-     
+
       // Default coins based on role
       const defaultCoins = role === 'Worker' ? 10 : 50;
-      console.log(`User role: ${role}, Coins awarded: ${defaultCoins}`);
-      const info = {name,email,role,imageUrl,defaultCoins}
-      await saveUser(info)
-      setUserInfo(info)
+      const info = { name, email, role, imageUrl, defaultCoins };
+      await saveUser(info);
+      setUserInfo(info);
+
       // Navigate to home and display success toast
       navigate('/');
       toast.success('Signup Successful');
     } catch (err) {
       console.error(err);
-      toast.error(err?.message || 'Signup failed');
+      if (err?.message.includes('email-already-in-use')) {
+        toast.error('Email already exists. Please use a different email.');
+      } else {
+        toast.error(err?.message || 'Signup failed');
+      }
     }
   };
-console.log(role)
+
   // Handle Google Sign-In
   const handleGoogleSignIn = async () => {
     try {
-
-      const res =await  signInWithGoogle();
-    if(res?.user){
-      const defaultCoins = role === 'Worker' ? 10 : 50;
-      const info = {name:res.user.displayName,email:res.user?.email,role,imageUrl:res.user?.photoURL,defaultCoins}
-       await saveUser(info)
-       setUserInfo(info)
-    }
+      const res = await signInWithGoogle();
+      if (res?.user) {
+        const defaultCoins = role === 'Worker' ? 10 : 50;
+        const info = { name: res.user.displayName, email: res.user?.email, role, imageUrl: res.user?.photoURL, defaultCoins };
+        await saveUser(info);
+        setUserInfo(info);
+      }
       navigate('/');
       toast.success('Signup Successful');
     } catch (err) {
@@ -72,15 +86,15 @@ console.log(role)
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white">
-          <Helmet>
-              <title> Job Heaven | Sign Up</title>
-            </Helmet>
-      
-      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
+    <div className="flex my-28 justify-center items-center min-h-screen bg-white">
+      <Helmet>
+        <title>Job Heaven | Sign Up</title>
+      </Helmet>
+
+      <div className="flex flex-col max-w-md md:mt-24 p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-          <p className="text-sm text-gray-400">Welcome to PlantNet</p>
+          <p className="text-sm text-gray-400">Welcome to Job Heaven</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
@@ -94,6 +108,7 @@ console.log(role)
                 id="name"
                 placeholder="Enter Your Name Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"
+                required
               />
             </div>
             <div>
@@ -139,7 +154,7 @@ console.log(role)
                 Select Role
               </label>
               <select
-              onChange={()=>setRole(event.target.value)}
+                onChange={() => setRole(event.target.value)}
                 name="role"
                 id="role"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"

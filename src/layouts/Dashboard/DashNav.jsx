@@ -5,7 +5,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { FaBars } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
-import toast from "react-hot-toast";
+
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import useRole from "../../hooks/useRole";

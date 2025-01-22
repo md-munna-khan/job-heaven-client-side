@@ -4,6 +4,8 @@ import { ClipLoader } from 'react-spinners'; // You can use any loading spinner 
 import AdminWithdrawals from './AdminWithdrawals';
 import LoadingSpinner from '../../../assets/shared/LoadingSpinner';
 import { Helmet } from 'react-helmet-async';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 const AdminHome = () => {
   const [stats, setStats] = useState(null);
@@ -25,7 +27,16 @@ const AdminHome = () => {
 console.log('bipod',stats)
     fetchAdminStats();
   }, [axiosSecure]);
+ const {data=[]}=useQuery({
+  queryKey:['withdraw'],
+  queryFn: async()=>{
+    const res=await axios.get(`${import.meta.env.VITE_API_URL}/withdraw`)
+    return res.data
+  }
+ })
 
+ const sum = data.reduce((sum,total)=>sum+total.withdrawal_amount,0)
+ console.log(sum)
   if (loading) {
     return (
       <div className="text-center text-xl text-gray-500">
@@ -77,7 +88,7 @@ console.log('bipod',stats)
         {/* Total Payments */}
         <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
           <h3 className="text-xl font-medium text-gray-700">Total Payments</h3>
-          <p className="text-2xl font-bold text-red-500">${totalPayments.toFixed(2)}</p>
+          <p className="text-2xl font-bold text-red-500">${sum}</p>
         </div>
       </div>
       <AdminWithdrawals></AdminWithdrawals>
@@ -86,3 +97,5 @@ console.log('bipod',stats)
 };
 
 export default AdminHome;
+
+

@@ -25,6 +25,8 @@ const AdminWithdrawals = () => {
         withdrawalId,
         userEmail,
         withdrawalAmount,
+        
+
       });
 
       if (response.status === 200) {
