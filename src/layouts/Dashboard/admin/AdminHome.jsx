@@ -88,7 +88,7 @@ console.log('bipod',stats)
         {/* Total Payments */}
         <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
           <h3 className="text-xl font-medium text-gray-700">Total Payments</h3>
-          <p className="text-2xl font-bold text-red-500">${sum}</p>
+          <p className="text-2xl font-bold text-red-500">${totalPayments.toFixed(2)}</p>
         </div>
       </div>
       <AdminWithdrawals></AdminWithdrawals>
