@@ -1,4 +1,4 @@
-# Micro Tasking and Earning Platform  
+ # Micro Tasking and Earning Platform  
 
 ## Website Name  
 **Micro Tasking Hub**  
@@ -74,5 +74,7 @@
 Feel free to contribute to the project by submitting a pull request. Suggestions and feedback are always welcome!  
 
 ---
-Enjoy exploring **Micro Tasking Hub** and start earning today!  
+Enjoy exploring **Micro Tasking Hub** and start earning today 
+ 
+
 
